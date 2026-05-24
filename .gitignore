@@ -1,0 +1,4 @@
+.env
+node_modules
+xaman_secret.txt
+pnpm-lock.yaml

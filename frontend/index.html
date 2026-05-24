@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GKC 支付系統</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>高科幣 (GKC) 支付系統</h1>
+      <p class="subtitle">基於 XRPL + Xaman 錢包</p>
+    </header>
+
+    <main>
+      <!-- 發行資訊 -->
+      <section class="issuer-info">
+        <h2>GKC 發行資訊</h2>
+        <div id="issuerInfo">載入中...</div>
+      </section>
+
+      <!-- 建立信任線 -->
+      <section class="trust-section">
+        <h2>建立 GKC 信任線</h2>
+        <p>在使用 GKC 前，您需要先建立對發行方的信任線。</p>
+        <button id="createTrustBtn" class="btn">建立信任線 (透過 Xaman)</button>
+        <div id="trustQrCode" class="qr-container"></div>
+      </section>
+
+      <!-- 支付選項 -->
+      <section class="payment-options">
+        <h2>支付選項</h2>
+        
+        <div class="payment-type">
+          <h3>選項1: 直接 GKC 支付</h3>
+          <div class="form-group">
+            <label>商家地址:</label>
+            <input type="text" id="destinationGKC" placeholder="r...">
+          </div>
+          <div class="form-group">
+            <label>金額 (GKC):</label>
+            <input type="number" id="amountGKC" step="0.01" min="0" value="10">
+          </div>
+          <button id="payGKCBtn" class="btn btn-primary">用 GKC 支付</button>
+        </div>
+
+        <div class="payment-type">
+          <h3>選項2: 用 XRP 購買 GKC</h3>
+          <div class="form-group">
+            <label>商家地址:</label>
+            <input type="text" id="destinationXRP" placeholder="r...">
+          </div>
+          <div class="form-group">
+            <label>支付 XRP 數量:</label>
+            <input type="number" id="xrpAmount" step="0.1" min="0" value="10">
+          </div>
+          <div class="form-group">
+            <label>獲得 GKC 數量:</label>
+            <input type="number" id="gkcAmount" step="0.01" min="0" value="10">
+          </div>
+          <button id="payXRPBtn" class="btn btn-secondary">用 XRP 支付 (兌換 GKC)</button>
+        </div>
+      </section>
+
+      <!-- 支付狀態 -->
+      <section class="payment-status" id="paymentSection" style="display:none;">
+        <h2>支付狀態</h2>
+        <div id="paymentQrCode" class="qr-container"></div>
+        <div id="paymentStatus">等待支付...</div>
+        <div id="paymentDetails"></div>
+        <button id="checkStatusBtn" class="btn">檢查支付狀態</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2024 高科幣 GKC - 基於 XRPL 技術</p>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
